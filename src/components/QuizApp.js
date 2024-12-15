@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Timer, Circle, CircleDot } from 'lucide-react';
 import quizData from '../quiz.json';
 
+const API_URL = process.env.NODE_ENV === 'production'
+    ? 'https://quiz-backend-oymn.vercel.app/api'
+    : 'http://localhost:3000/api';
+
 const QuizApp = () => {
   const [screen, setScreen] = useState('start');
   const [userName, setUserName] = useState('');
@@ -11,10 +15,13 @@ const QuizApp = () => {
   const [timeLeft, setTimeLeft] = useState(20);
   const [timerProgress, setTimerProgress] = useState(100);
   const [isAnswered, setIsAnswered] = useState(false);
-  const [leaderboard, setLeaderboard] = useState(() => {
-    const savedLeaderboard = localStorage.getItem('quizLeaderboard');
-    return savedLeaderboard ? JSON.parse(savedLeaderboard) : [];
-  });
+  const [leaderboard, setLeaderboard] = useState([]);
+  const [error, setError] = useState(null);
+
+  // Fetch leaderboard on mount and when updated
+  useEffect(() => {
+    fetchLeaderboard();
+  }, []);
 
   // Timer effect
   useEffect(() => {
@@ -44,10 +51,20 @@ const QuizApp = () => {
     }
   }, [timeLeft, screen, isAnswered]);
 
-  // Save leaderboard to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('quizLeaderboard', JSON.stringify(leaderboard));
-  }, [leaderboard]);
+  const fetchLeaderboard = async () => {
+    try {
+      const response = await fetch(`${API_URL}/leaderboard`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch leaderboard');
+      }
+      const data = await response.json();
+      setLeaderboard(data);
+      setError(null);
+    } catch (err) {
+      console.error('Error fetching leaderboard:', err);
+      setError('Failed to load leaderboard');
+    }
+  };
 
   const handleStart = () => {
     if (userName.trim()) {
@@ -67,7 +84,7 @@ const QuizApp = () => {
     setIsAnswered(true);
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (currentQuestion < quizData.questions.length - 1) {
       setCurrentQuestion(currentQuestion + 1);
       setSelectedAnswer('');
@@ -75,10 +92,29 @@ const QuizApp = () => {
       setTimeLeft(20);
       setTimerProgress(100);
     } else {
-      const newLeaderboard = [...leaderboard, { name: userName, score }]
-        .sort((a, b) => b.score - a.score);
-      setLeaderboard(newLeaderboard);
-      setScreen('completed');
+      try {
+        const response = await fetch(`${API_URL}/score`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: userName,
+            score: score
+          })
+        });
+
+        if (!response.ok) {
+          throw new Error('Failed to save score');
+        }
+
+        await fetchLeaderboard();
+        setScreen('completed');
+        setError(null);
+      } catch (err) {
+        console.error('Error saving score:', err);
+        setError('Failed to save score');
+      }
     }
   };
 
@@ -260,6 +296,11 @@ const QuizApp = () => {
             </div>
             <div className="mb-6">
               <h3 className="text-xl font-bold text-white mb-4">Quiz Complete!</h3>
+              {error && (
+                <div className="text-red-500 mb-4">
+                  {error}
+                </div>
+              )}
             </div>
             <img
               src="/images/complete.jpg"

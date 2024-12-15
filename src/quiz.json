@@ -1,0 +1,68 @@
+{
+  "questions": [
+    {
+      "id": 1,
+      "question": "How many gifts were given in total in the 12 days of Christmas?",
+      "options": ["78", "262", "364", "412"],
+      "correctAnswer": "364",
+      "image": "1.jpg"
+    },
+    {
+      "id": 2,
+      "question": "What time is the Kings Speech traditionally broadcast on Christmas day?",
+      "options": ["Midday", "1pm", "3pm", "4pm"],
+      "correctAnswer": "3pm",
+      "image": "2.avif"
+    },
+    {
+      "id": 3,
+      "question": "What gift did Harry Potter receive from the Dursley's during his first Christmas at Hogwarts?",
+      "options": ["A 50 pence piece", "Ricky Ross", "A chocolate bar", "An owl"],
+      "correctAnswer": "A 50 pence piece",
+      "image": "3.webp"
+    },
+    {
+      "id": 4,
+      "question": "What do Children in Sweden leave out for Santa?",
+      "options": ["An owl", "A cup of coffee", "Gingerbread", "Brandy"],
+      "correctAnswer": "A cup of coffee",
+      "image": "4.gif"
+    },
+    {
+      "id": 5,
+      "question": "If you were born on Christmas day what's your star sign?",
+      "options": ["Sagittarius", "Scorpio", "Aquarius", "Capricorn"],
+      "correctAnswer": "Capricorn"
+    },
+    {
+      "id": 6,
+      "question": "In which ocean can you find Christmas Island?",
+      "options": ["Pacific", "Atlantic", "Arctic", "Indian"],
+      "correctAnswer": "Indian"
+    },
+    {
+      "id": 7,
+      "question": "Which famous Scottish singer was born on Christmas day 1954?",
+      "options": ["Annie Lennox", "Lulu", "Midge Ure", "Lewis Capaldi"],
+      "correctAnswer": "Annie Lennox"
+    },
+    {
+      "id": 8,
+      "question": "In the United Kingdom, how many turkeys are killed for Christmas dinner each year?",
+      "options": ["1,000,000", "5,000,000", "10,000,000", "50,000,000"],
+      "correctAnswer": "10,000,000"
+    },
+    {
+      "id": 9,
+      "question": "In the 12 days of Christmas song, how many Pipers Piping?",
+      "options": ["9", "10", "11", "12"],
+      "correctAnswer": "11"
+    },
+    {
+      "id": 10,
+      "question": "How many varieties are there of Brussels sprouts",
+      "options": ["6", "12", "23", "More than 110 varieties"],
+      "correctAnswer": "More than 110 varieties"
+    }
+  ]
+}

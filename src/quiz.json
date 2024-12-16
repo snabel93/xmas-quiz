@@ -26,43 +26,49 @@
       "question": "What do Children in Sweden leave out for Santa?",
       "options": ["An owl", "A cup of coffee", "Gingerbread", "Brandy"],
       "correctAnswer": "A cup of coffee",
-      "image": "4.gif"
+      "image": "4.jpg"
     },
     {
       "id": 5,
       "question": "If you were born on Christmas day what's your star sign?",
       "options": ["Sagittarius", "Scorpio", "Aquarius", "Capricorn"],
-      "correctAnswer": "Capricorn"
+      "correctAnswer": "Capricorn",
+      "image": "5.jpg"
     },
     {
       "id": 6,
       "question": "In which ocean can you find Christmas Island?",
       "options": ["Pacific", "Atlantic", "Arctic", "Indian"],
-      "correctAnswer": "Indian"
+      "correctAnswer": "Indian",
+      "image": "6.jpg"
     },
     {
       "id": 7,
       "question": "Which famous Scottish singer was born on Christmas day 1954?",
       "options": ["Annie Lennox", "Lulu", "Midge Ure", "Lewis Capaldi"],
-      "correctAnswer": "Annie Lennox"
+      "correctAnswer": "Annie Lennox",
+      "image": "7.jpg"
     },
     {
       "id": 8,
       "question": "In the United Kingdom, how many turkeys are killed for Christmas dinner each year?",
       "options": ["1,000,000", "5,000,000", "10,000,000", "50,000,000"],
-      "correctAnswer": "10,000,000"
+      "correctAnswer": "10,000,000",
+      "image": "8.webp"
     },
     {
       "id": 9,
       "question": "In the 12 days of Christmas song, how many Pipers Piping?",
       "options": ["9", "10", "11", "12"],
-      "correctAnswer": "11"
+      "correctAnswer": "11",
+      "image": "9.jpg"
     },
     {
       "id": 10,
       "question": "How many varieties are there of Brussels sprouts",
       "options": ["6", "12", "23", "More than 110 varieties"],
-      "correctAnswer": "More than 110 varieties"
+      "correctAnswer": "More than 110 varieties",
+      "image": "10.jpg"
     }
   ]
 }

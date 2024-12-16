@@ -284,60 +284,51 @@ const QuizApp = () => {
     );
   }
 
- // Completed Screen
- return (
-  <div className="min-h-screen bg-gray-900 text-white p-4 relative">
-    <div className="relative z-10">
-      <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg">
-        <div className="p-6">
-          <div className="flex justify-between mb-4">
-            <h2 className="text-2xl font-bold text-white">Christmas Quiz</h2>
-            <span className="text-xl text-white">{userName}</span>
-          </div>
-          <div className="mb-6">
-            <h3 className="text-xl font-bold text-white mb-4">Quiz Complete!</h3>
-            {error && (
-              <div className="text-red-500 mb-4">
-                {error}
-              </div>
-            )}
-            <div className="bg-green-600 text-white p-6 rounded-lg shadow-lg mb-4">
-              <h4 className="text-2xl font-bold mb-2">Thanks {userName}!</h4>
-              <p className="text-lg">for playing the 10Squared Mince Pie Quiz</p>
-              <p className="text-xl font-semibold mt-4">Well done, your score is {score} points</p>
+  // Completed Screen
+  return (
+    <div className="min-h-screen relative bg-gray-900 text-white overflow-hidden">
+      <img
+        src="/images/complete.jpg"
+        alt="Complete"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      <div className="relative z-10 max-w-2xl mx-auto h-full p-4">
+        <div className="mb-6">
+          {error && (
+            <div className="text-red-500 mb-4 text-center">
+              {error}
             </div>
+          )}
+          <div className="bg-green-600 text-white p-6 rounded-lg shadow-lg mb-4 text-center">
+            <h4 className="text-2xl font-bold mb-2">Thanks {userName}!</h4>
+            <p className="text-lg">for playing the 10Squared Mince Pie Quiz</p>
+            <p className="text-xl font-semibold mt-4">Well done, your score is {score} points</p>
           </div>
-          <div className="relative">
-            <img
-              src="/images/complete.jpg"
-              alt="Complete"
-              className="w-full rounded-lg"
-            />
-            <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
-              <div className="p-6">
-                <h2 className="text-xl font-bold text-white mb-6">Leaderboard</h2>
-                <div className="space-y-4">
-                  {leaderboard.map((entry, index) => (
-                    <div
-                      key={index}
-                      className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
-                    >
-                      <div className="flex items-center">
-                        <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
-                        <span className="text-lg text-white">{entry.name}</span>
-                      </div>
-                      <span className="text-lg text-white">{entry.score} points</span>
-                    </div>
-                  ))}
+        </div>
+        <div className="bg-black bg-opacity-60 rounded-lg">
+          <div className="p-6">
+            <h2 className="text-xl font-bold text-white mb-6 text-center">Leaderboard</h2>
+            <div className="space-y-4">
+              {leaderboard.map((entry, index) => (
+                <div
+                  key={index}
+                  className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
+                >
+                  <div className="flex items-center">
+                    <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
+                    <span className="text-lg text-white">{entry.name}</span>
+                  </div>
+                  <span className="text-lg text-white">{entry.score} points</span>
                 </div>
-              </div>
+              ))}
             </div>
+          </div>
+        </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 };
 
 export default QuizApp;

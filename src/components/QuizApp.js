@@ -124,12 +124,8 @@ const QuizApp = () => {
       <div className="min-h-screen bg-gray-900 text-white p-4">
         <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg">
           <div className="p-6">
-            <div className="flex justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white">Christmas Quiz</h2>
-              <span className="text-xl text-white">Welcome</span>
-            </div>
             <div className="mb-6">
-              <h3 className="text-xl font-bold text-white mb-4">
+              <h3 className="text-xl font-bold text-white mb-4 text-center">
                 Welcome to the 10 Squared Mince Pie Quiz 2024
               </h3>
             </div>
@@ -139,9 +135,10 @@ const QuizApp = () => {
               className="w-full rounded-lg mb-6"
             />
             <div className="mb-6">
-              <p className="text-lg text-white mb-4">Quiz Rules:</p>
-              <ul className="space-y-3">
+              <p className="text-lg text-white mb-4 text-center">Quiz Rules:</p>
+               <ul className="space-y-3">
                 {[
+                  'No Cheating!',
                   'You have 20 seconds to answer each question',
                   'Each correct answer is worth 1 point',
                   'You can only select one answer per question',
@@ -157,7 +154,7 @@ const QuizApp = () => {
             <div className="space-y-4">
               <input
                 type="text"
-                placeholder="Enter your first name"
+                placeholder="Enter your name"
                 value={userName}
                 onChange={(e) => setUserName(e.target.value)}
                 className="w-full p-2 rounded bg-gray-700 text-white border-gray-600"

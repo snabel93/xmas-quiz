@@ -302,32 +302,58 @@ const QuizApp = () => {
                 <p className="text-xl font-semibold mt-4">Well done, your score is {score} points</p>
               </div>
             </div>
-            <div className="relative">
-              <img
-                src="/images/complete.jpg"
-                alt="Complete"
-                className="w-full rounded-lg"
-              />
-              <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-white mb-6">Leaderboard</h2>
-                  <div className="space-y-4">
-                    {leaderboard.map((entry, index) => (
-                      <div
-                        key={index}
-                        className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
-                      >
-                        <div className="flex items-center">
-                          <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
-                          <span className="text-lg text-white">{entry.name}</span>
+                          <div className="relative">
+                {[...Array(Math.ceil(leaderboard.length / 3))].map((_, i) => (
+                  <div key={i} className="relative">
+                    <img
+                      src={`/images/complete${(i % 3) + 1}.jpg`}
+                      alt={`Background ${i + 1}`}
+                      className="w-full rounded-lg"
+                    />
+                    {i === 0 && (
+                      <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
+                        <div className="p-6 text-center">
+                          <h2 className="text-xl font-bold text-white mb-6">Leaderboard</h2>
+                          <div className="space-y-4">
+                            {leaderboard.slice(i * 3, (i + 1) * 3).map((entry, index) => (
+                              <div
+                                key={index}
+                                className="flex flex-col p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
+                              >
+                                <div className="flex items-center mb-2">
+                                  <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
+                                  <span className="text-lg text-white">{entry.name}</span>
+                                </div>
+                                <span className="text-lg text-white">{entry.score} points</span>
+                              </div>
+                            ))}
+                          </div>
                         </div>
-                        <span className="text-lg text-white">{entry.score} points</span>
                       </div>
-                    ))}
+                    )}
+                    {i > 0 && (
+                      <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
+                        <div className="p-6 text-center">
+                          <div className="space-y-4">
+                            {leaderboard.slice(i * 3, (i + 1) * 3).map((entry, index) => (
+                              <div
+                                key={index}
+                                className="flex flex-col p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
+                              >
+                                <div className="flex items-center mb-2">
+                                  <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
+                                  <span className="text-lg text-white">{entry.name}</span>
+                                </div>
+                                <span className="text-lg text-white">{entry.score} points</span>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                </div>
+                ))}
               </div>
-            </div>
           </div>
         </div>
       </div>

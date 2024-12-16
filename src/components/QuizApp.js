@@ -287,9 +287,9 @@ const QuizApp = () => {
   // Completed Screen
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4 relative">
-      <div className="relative z-10">
-        <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg">
-          <div className="p-6">
+      <div className="relative z-10 h-full">
+        <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg h-full">
+          <div className="p-6 h-full">
             <div className="mb-6">
               {error && (
                 <div className="text-red-500 mb-4">

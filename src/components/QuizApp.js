@@ -3,7 +3,7 @@ import { Timer, Circle, CircleDot } from 'lucide-react';
 import quizData from '../quiz.json';
 
 const API_URL = process.env.NODE_ENV === 'production'
-    ? 'https://quiz-backend-oymn.vercel.app/api'
+    ? 'https://quiz-app-backend-sable.vercel.app/api'
     : 'http://localhost:3000/api';
 
 const QuizApp = () => {

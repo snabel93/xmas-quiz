@@ -301,6 +301,11 @@ const QuizApp = () => {
                   {error}
                 </div>
               )}
+              <div className="bg-green-600 text-white p-6 rounded-lg shadow-lg mb-4">
+                <h4 className="text-2xl font-bold mb-2">Thanks {userName}!</h4>
+                <p className="text-lg">for playing the 10Squared Mince Pie Quiz</p>
+                <p className="text-xl font-semibold mt-4">Well done, your score is {score} points</p>
+              </div>
             </div>
             <img
               src="/images/complete.jpg"

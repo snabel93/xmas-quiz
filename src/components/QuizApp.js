@@ -92,6 +92,9 @@ const QuizApp = () => {
       setTimeLeft(20);
       setTimerProgress(100);
     } else {
+      // Always transition to completed screen first
+      setScreen('completed');
+      
       try {
         const response = await fetch(`${API_URL}/score`, {
           method: 'POST',
@@ -109,11 +112,12 @@ const QuizApp = () => {
         }
 
         await fetchLeaderboard();
-        setScreen('completed');
         setError(null);
       } catch (err) {
         console.error('Error saving score:', err);
-        setError('Failed to save score');
+        setError('Failed to save score. Your score was: ' + score);
+        // Try to fetch leaderboard anyway
+        fetchLeaderboard().catch(console.error);
       }
     }
   };
@@ -257,16 +261,16 @@ const QuizApp = () => {
                   Submit
                 </button>
               </div>
-) : (
-  <div className="flex justify-center">
-    <button
-      onClick={handleNext}
-      className="px-8 py-2 rounded-full text-xl font-semibold bg-green-500 hover:bg-green-600 text-white cursor-pointer transition-colors"
-    >
-      {currentQuestion < quizData.questions.length - 1 ? 'Next Question' : 'See Your Score'}
-    </button>
-  </div>
-)}
+            ) : (
+              <div className="flex justify-center">
+                <button
+                  onClick={handleNext}
+                  className="px-8 py-2 rounded-full text-xl font-semibold bg-green-500 hover:bg-green-600 text-white cursor-pointer transition-colors"
+                >
+                  {currentQuestion < quizData.questions.length - 1 ? 'Next Question' : 'See Your Score'}
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -293,7 +297,7 @@ const QuizApp = () => {
             </div>
             <div className="relative">
               <img
-                src="/images/complete.jpg"
+                src="/images/score.jpg"
                 alt="Complete"
                 className="w-full rounded-lg"
               />

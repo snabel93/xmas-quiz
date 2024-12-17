@@ -135,13 +135,12 @@ const QuizApp = () => {
               className="w-full rounded-lg mb-6"
             />
             <div className="mb-6">
-              <p className="text-lg text-white mb-4 text-center">Quiz Rules:</p>
+              <p className="text-lg text-white mb-4 text-center font-bold">Quiz Rules:</p>
                <ul className="space-y-3">
                 {[
                   'No Cheating!',
                   'You have 20 seconds to answer each question',
                   'Each correct answer is worth 1 point',
-                  'You can only select one answer per question',
                   'Your score will be added to the leaderboard'
                 ].map((rule, index) => (
                   <li key={index} className="flex items-center text-lg text-white">
@@ -264,7 +263,7 @@ const QuizApp = () => {
       onClick={handleNext}
       className="px-8 py-2 rounded-full text-xl font-semibold bg-green-500 hover:bg-green-600 text-white cursor-pointer transition-colors"
     >
-      Next Question
+      {currentQuestion < quizData.questions.length - 1 ? 'Next Question' : 'See Your Score'}
     </button>
   </div>
 )}

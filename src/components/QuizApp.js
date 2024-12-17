@@ -182,7 +182,7 @@ const QuizApp = () => {
     );
   }
 
-  // Question Screen
+// Question Screen
   if (screen === 'question') {
     const currentQ = quizData.questions[currentQuestion];
     
@@ -192,15 +192,14 @@ const QuizApp = () => {
           <div className="p-6">
             <div className="flex justify-between mb-4">
               <h2 className="text-2xl font-bold text-white">Christmas Quiz</h2>
-              <span className="text-xl text-white">{userName}</span>
+              <span className="text-xl text-white">Question {currentQuestion + 1}/{quizData.questions.length}</span>
+              {currentQuestion + 1}/{quizData.questions.length}
             </div>
             
-            <div className="flex justify-between mb-4">
-              <h3 className="text-xl font-bold text-white flex-1 mr-4">{currentQ.question}</h3>
-              <span className="text-xl text-white whitespace-nowrap">
-                {currentQuestion + 1}/{quizData.questions.length}
-              </span>
-            </div>
+            <h3 className="text-xl font-bold text-white mr-4">{currentQ.question}</h3>
+
+
+
 
             {currentQ.image && (
               <img

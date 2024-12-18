@@ -53,7 +53,7 @@
       "id": 8,
       "question": "In the United Kingdom, how many turkeys are killed for Christmas dinner each year?",
       "options": ["1 million", "5 million", "10 million", "50 million"],
-      "correctAnswer": "10,000,000",
+      "correctAnswer": "10 million",
       "image": "8.webp"
     },
     {

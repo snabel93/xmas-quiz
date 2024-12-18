@@ -192,14 +192,10 @@ const QuizApp = () => {
           <div className="p-6">
             <div className="flex justify-between mb-4">
               <h2 className="text-2xl font-bold text-white">Christmas Quiz</h2>
-              <span className="text-xl text-white">Question {currentQuestion + 1}/{quizData.questions.length}</span>
-              {currentQuestion + 1}/{quizData.questions.length}
+              <span className="text-xl text-white text-right">Question {currentQuestion + 1}/{quizData.questions.length}</span>
             </div>
             
-            <h3 className="text-xl font-bold text-white mr-4">{currentQ.question}</h3>
-
-
-
+            <h3 className="text-xl font-bold text-white mb-8">{currentQ.question}</h3>
 
             {currentQ.image && (
               <img

@@ -277,8 +277,8 @@ const QuizApp = () => {
     );
   }
 
-  // Full Results Screen
-  if (screen === 'fullresults') {
+   // Full Results Screen
+   if (screen === 'fullresults') {
     return (
       <div className="min-h-screen bg-gray-900 text-white p-4 relative">
         <div className="relative z-10 h-full">
@@ -293,8 +293,7 @@ const QuizApp = () => {
               <div className="relative">
                 <div className="bg-gray-800 rounded-lg">
                   <div className="p-6">
-                    <div className="flex justify-between mb-6">
-                      <h2 className="text-xl font-bold text-white">All Scores</h2>
+                    <div className="flex justify-end mb-6">
                       <button
                         onClick={() => setScreen('start')}
                         className="px-4 py-2 rounded bg-green-500 hover:bg-green-600 text-white transition-colors"
@@ -302,6 +301,7 @@ const QuizApp = () => {
                         Return to Start
                       </button>
                     </div>
+                    <h2 className="text-xl font-bold text-white mb-6">All Scores</h2>
                     <div className="space-y-4">
                       {sortedLeaderboard.map((entry, index) => (
                         <div

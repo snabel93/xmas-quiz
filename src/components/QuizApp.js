@@ -352,9 +352,9 @@ const QuizApp = () => {
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
                 <div className="p-6">
-                  <h2 className="text-xl font-bold text-white mb-6">Leaderboard - Top 5</h2>
+                  <h2 className="text-xl font-bold text-white mb-6 text-center">Top Scores</h2>
                   <div className="space-y-4">
-                    {leaderboard.slice(0, 5).map((entry, index) => (
+                    {leaderboard.slice(0, 3).map((entry, index) => (
                       <div
                         key={index}
                         className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"

@@ -8,6 +8,7 @@ const API_URL = process.env.NODE_ENV === 'production'
 
 const QuizApp = () => {
   const [screen, setScreen] = useState('start');
+  const [sortedLeaderboard, setSortedLeaderboard] = useState([]);
   const [userName, setUserName] = useState('');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
@@ -58,7 +59,9 @@ const QuizApp = () => {
         throw new Error('Failed to fetch leaderboard');
       }
       const data = await response.json();
+      const sorted = [...data].sort((a, b) => b.score - a.score);
       setLeaderboard(data);
+      setSortedLeaderboard(sorted);
       setError(null);
     } catch (err) {
       console.error('Error fetching leaderboard:', err);
@@ -139,7 +142,7 @@ const QuizApp = () => {
               className="w-full rounded-lg mb-6"
             />
             <div className="mb-6">
-              <p className="text-lg text-white mb-4 text-center font-bold">Quiz Rules:</p>
+              <p className="text-lg text-white mb-4 text-center font-bold cursor-default" onClick={() => setScreen('fullresults')}>Quiz Rules:</p>
                <ul className="space-y-3">
                 {[
                   'No Cheating!',
@@ -182,7 +185,7 @@ const QuizApp = () => {
     );
   }
 
-// Question Screen
+  // Question Screen
   if (screen === 'question') {
     const currentQ = quizData.questions[currentQuestion];
     
@@ -191,11 +194,11 @@ const QuizApp = () => {
         <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg">
           <div className="p-6">
             <div className="flex justify-between mb-4">
-              <h2 className="text-2xl font-bold text-white">Mince Pie Quiz</h2>
-              <span className="text-xl text-white text-right">Question {currentQuestion + 1}/{quizData.questions.length}</span>
+              <h2 className="text-2xl font-bold text-white">Christmas Quiz</h2>
+              <span className="text-xl text-white">Question {currentQuestion + 1}</span>
             </div>
             
-            <h3 className="text-xl font-bold text-white mb-6">{currentQ.question}</h3>
+            <h3 className="text-xl font-bold text-white mb-8">{currentQ.question}</h3>
 
             {currentQ.image && (
               <img
@@ -230,13 +233,15 @@ const QuizApp = () => {
                   }`}
                   disabled={isAnswered}
                 >
-                  <div className="flex items-center">
-                    {selectedAnswer === option ? (
-                      <CircleDot className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" strokeWidth={2.5} fill="currentColor" />
-                    ) : (
-                      <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
-                    )}
-                    <span>{option}</span>
+                  <div className="flex items-center justify-between w-full">
+                    <div className="flex items-center">
+                      {selectedAnswer === option ? (
+                        <CircleDot className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" strokeWidth={2.5} fill="currentColor" />
+                      ) : (
+                        <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
+                      )}
+                    </div>
+                    <span className="text-right">{option}</span>
                   </div>
                 </button>
               ))}
@@ -272,6 +277,55 @@ const QuizApp = () => {
     );
   }
 
+  // Full Results Screen
+  if (screen === 'fullresults') {
+    return (
+      <div className="min-h-screen bg-gray-900 text-white p-4 relative">
+        <div className="relative z-10 h-full">
+          <div className="max-w-2xl mx-auto bg-gray-800 rounded-lg h-full">
+            <div className="p-6 h-full">
+              <div className="mb-6">
+                <div className="bg-green-600 text-white p-6 rounded-lg shadow-lg mb-4 text-center">
+                  <h4 className="text-2xl font-bold mb-2">Full Leaderboard</h4>
+                  <p className="text-lg">All quiz scores from highest to lowest</p>
+                </div>
+              </div>
+              <div className="relative">
+                <div className="bg-gray-800 rounded-lg">
+                  <div className="p-6">
+                    <div className="flex justify-between mb-6">
+                      <h2 className="text-xl font-bold text-white">All Scores</h2>
+                      <button
+                        onClick={() => setScreen('start')}
+                        className="px-4 py-2 rounded bg-green-500 hover:bg-green-600 text-white transition-colors"
+                      >
+                        Return to Start
+                      </button>
+                    </div>
+                    <div className="space-y-4">
+                      {sortedLeaderboard.map((entry, index) => (
+                        <div
+                          key={index}
+                          className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center"
+                        >
+                          <div className="flex items-center">
+                            <Circle className="w-5 h-5 mr-3 text-green-500 flex-shrink-0" />
+                            <span className="text-lg text-white">{entry.name}</span>
+                          </div>
+                          <span className="text-lg text-white">{entry.score} points</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   // Completed Screen
   return (
     <div className="min-h-screen bg-gray-900 text-white p-4 relative">
@@ -298,9 +352,9 @@ const QuizApp = () => {
               />
               <div className="absolute inset-0 bg-black bg-opacity-60 rounded-lg">
                 <div className="p-6">
-                  <h2 className="text-xl font-bold text-white mb-6">Leaderboard</h2>
+                  <h2 className="text-xl font-bold text-white mb-6">Leaderboard - Top 5</h2>
                   <div className="space-y-4">
-                    {leaderboard.map((entry, index) => (
+                    {leaderboard.slice(0, 5).map((entry, index) => (
                       <div
                         key={index}
                         className="flex justify-between p-4 bg-gray-700 bg-opacity-50 rounded items-center backdrop-blur-sm"
